@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Menu.css";
 import { withAsyncAction } from "../../redux/HOCs";
-import logo from '../../kenzie-logo.png';
+import logo from "../../kenzie-logo.png";
 
 class Menu extends React.Component {
   handleLogout = (event) => {

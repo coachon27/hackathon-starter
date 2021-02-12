@@ -9,9 +9,9 @@ class User extends React.Component {
           <img src={this.props.image} className="user__image" alt="" />
         </div>
         <div className="user__info">
-          <h2>{this.props.username}</h2>
+          <h2 className="user__name">{this.props.username}</h2>
           <form className="submit__image-form">
-            <label>Change Profile Image</label>
+            <label className="custom__file-upload">Change Profile Image</label>
             <input
               type="file"
               onChange={this.props.changePicture}

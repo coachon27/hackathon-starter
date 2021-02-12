@@ -108,7 +108,7 @@ class Messages extends React.Component {
         <div className="left__div">
           <User
             image={this.state.image}
-            username={this.state.username}
+            username={this.props.username}
             changePicture={this.changePicture}
           />
           <div className="new__message">

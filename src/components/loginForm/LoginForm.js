@@ -28,22 +28,25 @@ class LoginForm extends React.Component {
       <div className="LoginForm">
         <img className="login__logo" src={logo} alt="" />
         <form id="login-form" onSubmit={this.handleLogin}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username"></label>
           <div>
-          <input className="uname"
-            type="text"
-            name="username"
-            required
-            onChange={this.handleChange}
-            autoComplete="off"
-          />
+            <input
+              className="uname"
+              type="text"
+              name="username"
+              required
+              onChange={this.handleChange}
+              autoComplete="off"
+              placeholder="Enter Username"
+            />
           </div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password"></label>
           <input
             type="password"
             name="password"
             required
             onChange={this.handleChange}
+            placeholder="Enter Password"
           />
           <button className="login__button" type="submit" disabled={loading}>
             Login
@@ -56,10 +59,7 @@ class LoginForm extends React.Component {
         </div>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
-       
-      
       </div>
-      
     );
   }
 }
