@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./10.jpg');
+  /* background-image: url("./10.jpg"); */
   background-repeat: no-repeat;
   background-size: 200px 200px;
   background-position: left bottom;
@@ -39,17 +39,68 @@ code {
   width: 100%;
 }
 
+.left__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  position: relative;
+  bottom: 105px;
+}
+
+.user__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  min-width: 380px;
+  height: 500px;
+  background-color: lightgray;
+  margin-bottom: 5rem;
+  border-radius: 20px;
+}
+
+.user__image {
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  margin: 2rem 0;
+  border-radius: 50%;
+}
+
+.submit__image-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.submit__image-form input {
+  background-color: white;
+  margin: 0 0 1.5rem 0;
+}
+
+input#file_upload_button {
+  margin-right: 1rem;
+}
+
 .new__message {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 5rem 0; */
-  width: 45%;
+  justify-content: center;
+  margin-bottom: 3rem;
+  width: 80%;
+  min-width: 380px;
+  height: 400px;
+  background: lightgray;
+  border-radius: 20px;
 }
 
 .message__input {
   display: block;
-  margin: 5rem 0 3rem;
+  margin: 2rem 0;
   transition: all ease 0.3s;
   border-radius: 5px;
   width: 300px;
@@ -58,7 +109,7 @@ code {
 }
 
 .message__input:focus {
-  transform: scale(1.4);
+  transform: scale(1.2);
   box-shadow: 2px 2px 8px #888888;
   outline: none;
 }
@@ -71,7 +122,7 @@ button {
   border: 1px solid #0069d9;
   color: #0069d9;
   background-color: white;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
@@ -96,7 +147,7 @@ button {
   width: 100%;
   margin: 1rem;
   min-width: 400px;
-  max-width: 500px;
+  max-width: 550px;
   border: #104274 1px solid;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -176,6 +227,7 @@ button {
   justify-content: flex-end;
   margin-right: 1rem;
 }
+
 .tweet__create-date {
   margin-top: 1.5rem;
   position: relative;
@@ -185,11 +237,24 @@ button {
   display: none;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 845px) {
   .messages__container {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .left__div {
+    position: relative;
+    top: -20px;
+  }
+
+  .user__div {
+    margin: 2rem 0;
+  }
+
+  .new__message {
+    margin-bottom: 1rem;
   }
 
   .message__list {

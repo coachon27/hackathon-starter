@@ -30,6 +30,12 @@ h1 {
   padding-left: 1em;
 }
 
+@media only screen and (max-width: 650px) {
+  .home__link, .profile__link {
+    display: none;
+  }
+}
+
 #menu-links a {
   margin-left: 2rem;
   padding-right: 0.5em;

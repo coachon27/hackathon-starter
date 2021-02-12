@@ -3,6 +3,7 @@ import React from "react";
 // import Button from "react-bootstrap/Button";
 import Message from "./Message";
 import { withAsyncAction } from "../../redux/HOCs";
+import logo from "../../kenzie-logo.png";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -18,6 +19,9 @@ class Messages extends React.Component {
 
   componentDidMount() {
     this.fetchMessages();
+    this.props
+      .getPicture(this.props.username)
+      .then((res) => this.setState({ image: res.payload }));
   }
 
   fetchMessages = () => {
@@ -76,7 +80,12 @@ class Messages extends React.Component {
       });
   };
 
+  changePicture = (fileName) => {
+    // const picture =
+  };
+
   render() {
+    console.log(this.props.getPicture(this.props.username));
     let display = <div>No Messages Found</div>;
     if (this.state.messages.length > 0) {
       display = this.state.messages.map((message) => {
@@ -95,24 +104,45 @@ class Messages extends React.Component {
 
     return (
       <div className="messages__container">
-        <div className="new__message">
-          <h2>Create Kweet</h2>
-          <textarea
-            className="message__input"
-            name="message"
-            placeholder="What's on your mind?"
-            onChange={this.handleChange}
-            value={this.state.message}
-          />
-          <button
-            className="send__button"
-            
-            onClick={this.newMessageHandler}
-          >
-            Send Message
-          </button>{" "}
-          {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
+        <div className="left__div">
+          <div className="user__div">
+            <div>
+              {/* <img src={logo} alt="" className="user__image"/> */}
+              <img src={this.state.image} className="user__image" alt="" />
+            </div>
+            <div className="user__info">
+              <h2>{this.props.username}</h2>
+              <form className="submit__image-form">
+                <label>Change Profile Image</label>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    this.props
+                      .setPicture(this.props.username, e.target.files[0])
+                      .then((res) => console.log(res));
+                  }}
+                  accept="image/png, image/jpeg"
+                />
+                <button type='submit'>Submit</button>
+              </form>
+            </div>
+          </div>
+          <div className="new__message">
+            <h2>Create Kweet</h2>
+            <textarea
+              className="message__input"
+              name="message"
+              placeholder="What's on your mind?"
+              onChange={this.handleChange}
+              value={this.state.message}
+            />
+            <button className="send__button" onClick={this.newMessageHandler}>
+              Send Message
+            </button>{" "}
+            {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
+          </div>
         </div>
+
         <div className="message__list">
           <h2>Kweet List</h2>
           {display}
