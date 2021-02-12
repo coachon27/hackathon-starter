@@ -6,11 +6,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./10.jpg');
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  background-position: left bottom;
+  background-attachment: fixed;
+  /* filter:blur(8px); */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Profile {

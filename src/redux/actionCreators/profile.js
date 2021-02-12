@@ -1,6 +1,7 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 import { GETMESSAGE, CREATEMESSAGE, DELETEMESSAGE, ADDLIKE, REMOVELIKE, GETPICTURE, SETPICTURE } from "../actionTypes";
 
+
 const url = domain;
 
 export const getMessage = (username, limit) => dispatch => {
@@ -177,3 +178,4 @@ export const setPicture = (username, picture) => (dispatch, getState) => {
       return Promise.reject(dispatch({ type: SETPICTURE.FAIL, payload: err }));
     });
 };
+

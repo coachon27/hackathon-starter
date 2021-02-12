@@ -1,5 +1,5 @@
 .Menu {
-  background-color: #104274;
+  background-color: #00356b;
   display: flex;
   color: white;
   justify-content: space-between;
@@ -7,12 +7,27 @@
   padding: 2rem 1em;
   border-radius: 1em;
   width: 100%;
+  font-family: "Source Code Pro", monospace;
+}
+
+.logo__div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+}
+
+h1 {
+  margin-left: 2rem;
 }
 
 #menu-links {
   display: flex;
   padding-left: 1em;
-
 }
 
 #menu-links a {
