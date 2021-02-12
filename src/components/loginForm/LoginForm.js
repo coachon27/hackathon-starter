@@ -25,15 +25,16 @@ class LoginForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <div className="LoginForm">
+        <h2>Your favorite microblogging platform</h2>
         <form id="login-form" onSubmit={this.handleLogin}>
           <label htmlFor="username">Username</label>
           <div>
           <input className="uname"
             type="text"
             name="username"
-            autoFocus
             required
             onChange={this.handleChange}
+            autoComplete='off'
           />
           </div>
           <label htmlFor="password">Password</label>
@@ -43,7 +44,7 @@ class LoginForm extends React.Component {
             required
             onChange={this.handleChange}
           />
-          <button type="submit" disabled={loading}>
+          <button className='login__button' type="submit" disabled={loading}>
             Login
           </button>
         </form>

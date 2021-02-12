@@ -1,9 +1,46 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 2.5s;
+}
+
+.LoginForm h2 {
+  margin: 5rem;
+  text-align: center;
+}
+
+.LoginForm input {
+  text-align: center;
+  margin: 1rem;
+  outline: none;
+  transition: all ease .5s
+}
+
+.LoginForm input:focus {
+  transform: scale(1.5);
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #login-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  max-width: 15em;
-  background-color: lawngreen;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  
+  justify-content: center;
+  max-width: 20em;
+}
+
+.login__button {
+  margin-top: 3rem;
+  width: 12rem;
 }
