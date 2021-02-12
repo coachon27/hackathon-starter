@@ -1,6 +1,5 @@
 import React from "react";
-// import Button from "react-bootstrap/Button";
-// import Card from "react-bootstrap/Card";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
@@ -17,26 +16,6 @@ class Message extends React.Component {
     };
   }
 
-  // addLikeHandler = (messageID) => {
-  //   this.props
-  //     .addLike(messageID)
-  //     .then((res) => {
-  //     console.log('likeID to be added: ' + res.payload.like.id)
-  //       this.setState({ likes: [res.payload.like] });
-  //     })
-  // };
-
-  // removeLikeHandler = (message) => {
-  //   console.log(message);
-  //   const likeID = message?.likes[0]?.id;
-  //   console.log('likeID to be removed: ' + likeID);
-
-  //   this.props.removeLike(likeID).then((res) => {
-  //     console.log(res);
-  //     this.setState({ likes: [] });
-  //   }).then(console.log(message));
-  // };
-
   manageLikesHandler = (message) => {
     if (this.state.likes > 0) {
       this.props.setLikes(message?.likes[0]?.id);
@@ -48,7 +27,6 @@ class Message extends React.Component {
   };
 
   render() {
-    // const likeButtonStyle = { marginRight: "1rem" };
     return (
       <div className="tweet__div" key={this.props.message.id}>
         <h4 className="tweet__header">{this.props.message.username}</h4>
