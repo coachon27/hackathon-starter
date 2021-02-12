@@ -43,10 +43,9 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 45%;
-  position: relative;
-  bottom: 105px;
+  /* position: absolute;
+  bottom: 105px; */
 }
 
 .user__div {

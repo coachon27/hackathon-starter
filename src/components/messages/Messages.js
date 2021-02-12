@@ -1,9 +1,8 @@
 import React from "react";
 
-// import Button from "react-bootstrap/Button";
 import Message from "./Message";
+import User from "../user/User";
 import { withAsyncAction } from "../../redux/HOCs";
-import logo from "../../kenzie-logo.png";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -19,6 +18,7 @@ class Messages extends React.Component {
 
   componentDidMount() {
     this.fetchMessages();
+    // set the image state object to the current user's image
     this.props
       .getPicture(this.props.username)
       .then((res) => this.setState({ image: res.payload }));
@@ -67,6 +67,7 @@ class Messages extends React.Component {
     this.setState(data);
   };
 
+  // method is called on to essentially toggle both the likes state object and the like/unlike button element; built in methods removeLike and addLike are used here
   setLikes = (message) => {
     if (message.likes.length > 0) {
       const likeID = message?.likes[0]?.id;
@@ -80,12 +81,12 @@ class Messages extends React.Component {
       });
   };
 
-  changePicture = (fileName) => {
-    // const picture =
+  // method will be passed as a prop and called inside the User component; changes the image state object to the newly submitted file
+  changePicture = (e) => {
+    this.props.setPicture(this.props.username, e.target.files[0]);
   };
 
   render() {
-    console.log(this.props.getPicture(this.props.username));
     let display = <div>No Messages Found</div>;
     if (this.state.messages.length > 0) {
       display = this.state.messages.map((message) => {
@@ -105,28 +106,11 @@ class Messages extends React.Component {
     return (
       <div className="messages__container">
         <div className="left__div">
-          <div className="user__div">
-            <div>
-              {/* <img src={logo} alt="" className="user__image"/> */}
-              <img src={this.state.image} className="user__image" alt="" />
-            </div>
-            <div className="user__info">
-              <h2>{this.props.username}</h2>
-              <form className="submit__image-form">
-                <label>Change Profile Image</label>
-                <input
-                  type="file"
-                  onChange={(e) => {
-                    this.props
-                      .setPicture(this.props.username, e.target.files[0])
-                      .then((res) => console.log(res));
-                  }}
-                  accept="image/png, image/jpeg"
-                />
-                <button type='submit'>Submit</button>
-              </form>
-            </div>
-          </div>
+          <User
+            image={this.state.image}
+            username={this.state.username}
+            changePicture={this.changePicture}
+          />
           <div className="new__message">
             <h2>Create Kweet</h2>
             <textarea
@@ -139,7 +123,6 @@ class Messages extends React.Component {
             <button className="send__button" onClick={this.newMessageHandler}>
               Send Message
             </button>{" "}
-            {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
           </div>
         </div>
 
