@@ -2,22 +2,23 @@ import React from "react";
 import Spinner from "react-spinkit";
 import { withAsyncAction } from "../../redux/HOCs";
 import "./LoginForm.css";
+import logo from "../../kenzie-logo.png";
 
 class LoginForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
   }
 
-  handleLogin = e => {
+  handleLogin = (e) => {
     e.preventDefault();
     this.props.login(this.state);
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -25,7 +26,7 @@ class LoginForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <div className="LoginForm">
-        <h2>My least favorite microblogging platform</h2>
+        <img className="login__logo" src={logo} alt="" />
         <form id="login-form" onSubmit={this.handleLogin}>
           <label htmlFor="username">Username</label>
           <div>
@@ -34,7 +35,7 @@ class LoginForm extends React.Component {
             name="username"
             required
             onChange={this.handleChange}
-            autoComplete='off'
+            autoComplete="off"
           />
           </div>
           <label htmlFor="password">Password</label>
@@ -44,12 +45,14 @@ class LoginForm extends React.Component {
             required
             onChange={this.handleChange}
           />
-          <button className='login__button' type="submit" disabled={loading}>
+          <button className="login__button" type="submit" disabled={loading}>
             Login
           </button>
         </form>
-        <div className='register__div'>
-          <h5>Not a user? <a href='/'>Click Here!</a></h5>
+        <div className="register__div">
+          <h5>
+            Not a user? <a href="/">Click Here!</a>
+          </h5>
         </div>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}

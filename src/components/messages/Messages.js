@@ -1,7 +1,7 @@
 import React from "react";
 
-// import Button from "react-bootstrap/Button";
 import Message from "./Message";
+import User from "../user/User";
 import { withAsyncAction } from "../../redux/HOCs";
 
 class Messages extends React.Component {
@@ -18,6 +18,10 @@ class Messages extends React.Component {
 
   componentDidMount() {
     this.fetchMessages();
+    // set the image state object to the current user's image
+    this.props
+      .getPicture(this.props.username)
+      .then((res) => this.setState({ image: res.payload }));
   }
 
   fetchMessages = () => {
@@ -63,6 +67,7 @@ class Messages extends React.Component {
     this.setState(data);
   };
 
+  // method is called on to essentially toggle both the likes state object and the like/unlike button element; built in methods removeLike and addLike are used here
   setLikes = (message) => {
     if (message.likes.length > 0) {
       const likeID = message?.likes[0]?.id;
@@ -74,6 +79,11 @@ class Messages extends React.Component {
         console.log("added likeID " + res.payload.like.id);
         message.likes = [res.payload.like];
       });
+  };
+
+  // method will be passed as a prop and called inside the User component; changes the image state object to the newly submitted file
+  changePicture = (e) => {
+    this.props.setPicture(this.props.username, e.target.files[0]);
   };
 
   render() {
@@ -95,24 +105,27 @@ class Messages extends React.Component {
 
     return (
       <div className="messages__container">
-        <div className="new__message">
-          <h2>Create Kweet</h2>
-          <textarea
-            className="message__input"
-            name="message"
-            placeholder="What's on your mind?"
-            onChange={this.handleChange}
-            value={this.state.message}
+        <div className="left__div">
+          <User
+            image={this.state.image}
+            username={this.state.username}
+            changePicture={this.changePicture}
           />
-          <button
-            className="send__button"
-            
-            onClick={this.newMessageHandler}
-          >
-            Send Message
-          </button>{" "}
-          {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
+          <div className="new__message">
+            <h2>Create Kweet</h2>
+            <textarea
+              className="message__input"
+              name="message"
+              placeholder="What's on your mind?"
+              onChange={this.handleChange}
+              value={this.state.message}
+            />
+            <button className="send__button" onClick={this.newMessageHandler}>
+              Send Message
+            </button>{" "}
+          </div>
         </div>
+
         <div className="message__list">
           <h2>Kweet List</h2>
           {display}
