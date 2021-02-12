@@ -17,3 +17,5 @@ export const GETMESSAGE = createActionTypes("GETMESSAGE");
 export const GETPICTURE = createActionTypes("GETPICTURE");
 export const SETPICTURE = createActionTypes("SETPICTURE");
 
+
+

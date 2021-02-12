@@ -1,5 +1,62 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 2.5s;
+  width: 40%;
+  min-width: 400px;
+  margin-top: 2rem;
+  border-radius: 15px;
+  padding-bottom: 5rem;
+  background-color: lightgray;
+}
+
+.LoginForm h2 {
+  margin: 4rem;
+  text-align: center;
+  /* color: white; */
+}
+
+.LoginForm input {
+  text-align: center;
+  margin: 1rem;
+  outline: none;
+  transition: all ease .5s;
+  border-radius: 3px;
+}
+
+.LoginForm input:focus {
+  transform: scale(1.5);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #login-form {
   display: flex;
   flex-direction: column;
-  max-width: 20em;
+  align-items: center;
+  justify-content: center;
+  max-width: 25em;
+}
+
+.login__button {
+  margin-top: 3rem;
+  width: 12rem;
+  padding: .5rem 1rem;
+  background-color: #104274;
+  color: white;
+  border-radius: 5px;
+}
+
+.register__div {
+  position: relative;
+  top: 70px;
 }
