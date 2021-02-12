@@ -1,5 +1,9 @@
 #login-form {
   display: flex;
   flex-direction: column;
-  max-width: 20em;
+  justify-content: center;
+  align-items: center;
+  max-width: 15em;
+  background-color: lawngreen;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  
 }

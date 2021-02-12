@@ -1,10 +1,13 @@
 .Menu {
-  background-color: lightskyblue;
+  background-color: red;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  font-style: italic;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   align-items: center;
   padding: 0 1em;
   border-radius: 1em;
+  
 }
 
 #menu-links {
@@ -18,3 +21,4 @@
   text-decoration: underline;
   cursor: pointer;
 }
+

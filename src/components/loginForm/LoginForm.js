@@ -27,13 +27,15 @@ class LoginForm extends React.Component {
       <div className="LoginForm">
         <form id="login-form" onSubmit={this.handleLogin}>
           <label htmlFor="username">Username</label>
-          <input
+          <div>
+          <input className="uname"
             type="text"
             name="username"
             autoFocus
             required
             onChange={this.handleChange}
           />
+          </div>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -47,7 +49,10 @@ class LoginForm extends React.Component {
         </form>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
+       
+      
       </div>
+      
     );
   }
 }
