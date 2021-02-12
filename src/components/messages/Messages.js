@@ -63,21 +63,35 @@ class Messages extends React.Component {
     this.setState(data);
   };
 
-  
+  setLikes = (message) => {
+    if (message.likes.length > 0) {
+      const likeID = message?.likes[0]?.id;
+      console.log("likeID to be removed:" + likeID);
+      this.props.removeLike(likeID);
+      message.likes = [];
+    } else
+      this.props
+        .addLike(message.id)
+        .then((res) => {
+          console.log("added likeID " + res.payload.like.id);
+          message.likes = [res.payload.like];
+        });
+  };
 
   render() {
     let display = <div>No Messages Found</div>;
     if (this.state.messages) {
-      display = this.state.messages.map((value) => {
+      display = this.state.messages.map((message) => {
         return (
           <Message
-            key={value.id}
-            value={value}
+            key={message.id}
+            message={message}
             deleteMessageHandler={this.deleteMessageHandler}
             messages={this.state.messages}
-            addLike={this.props.addLike}
-            removeLike={this.props.removeLike}
-            manageLikesHandler={this.manageLikesHandler}
+            likes={message.likes.length}
+            // addLike={() => this.props.addLike(message.id)}
+            // removeLike={() => this.props.removeLike(message)}
+            setLikes={() => this.setLikes(message)}
           />
         );
       });

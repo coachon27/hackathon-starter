@@ -26,3 +26,12 @@ input {
   margin: 1rem;
   min-width: 300px;
 }
+
+.tweet_buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hide {
+  display: none;
+}

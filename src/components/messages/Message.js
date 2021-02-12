@@ -1,65 +1,92 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faThumbsUp,
+  faThumbsDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { withAsyncAction } from "../../redux/HOCs";
 
 class Message extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      likes: this.props.value.likes,
+      likes: this.props.likes,
     };
-    this.manageLikesHandler = this.manageLikesHandler.bind(this);
   }
 
-  addLikeHandler = (value) => {
-    // find message matching value.id
-    const message = this.props.messages.find((message) => message.id === value);
-    this.props.addLike(message.id).then((res) => {
-      console.log(res.payload.like);
-      this.setState({ likes: [res.payload.like] });
-    });
-  };
+  // addLikeHandler = (messageID) => {
+  //   this.props
+  //     .addLike(messageID)
+  //     .then((res) => {
+  //     console.log('likeID to be added: ' + res.payload.like.id)
+  //       this.setState({ likes: [res.payload.like] });
+  //     })
+  // };
 
-  removeLikeHandler = (value) => {
-    // find message matching value.id
-    const message = this.props.messages.find((message) => message.id === value);
-    this.props.removeLike(message.likes[0].id).then(() => {
-      this.setState({ likes: [] });
-    });
-  };
+  // removeLikeHandler = (message) => {
+  //   console.log(message);
+  //   const likeID = message?.likes[0]?.id;
+  //   console.log('likeID to be removed: ' + likeID);
 
-  manageLikesHandler = (value) => {
-    if (this.state.likes.length > 0)
-      this.removeLikeHandler(value);
-    else
-      this.addLikeHandler(value);
+  //   this.props.removeLike(likeID).then((res) => {
+  //     console.log(res);
+  //     this.setState({ likes: [] });
+  //   }).then(console.log(message));
+  // };
+
+  manageLikesHandler = (message) => {
+    if (this.state.likes > 0) {
+      this.props.setLikes(message?.likes[0]?.id);
+      this.setState({ likes: 0 });
+    } else {
+      this.props.setLikes(message.id);
+      this.setState({ likes: 1 });
+    }
   };
 
   render() {
+    const likeButtonStyle = { marginRight: "1rem" };
     return (
-      <Card key={this.props.value.id} className="tweet">
-        <Card.Header>{this.props.value.username}</Card.Header>
+      <Card key={this.props.message.id} className="tweet">
+        <Card.Header>{this.props.message.username}</Card.Header>
         <Card.Body>
-          <Card.Title>{this.props.value.text}</Card.Title>
-          <Card.Text>{this.props.value.createdAt.substr(0, 10)}</Card.Text>
-          <Card.Text>Likes: {this.state.likes.length} </Card.Text>
+          <Card.Title>{this.props.message.text}</Card.Title>
+          <Card.Text>{this.props.message.createdAt.substr(0, 10)}</Card.Text>
+          <Card.Text>Likes: {this.state.likes} </Card.Text>
+          <div className='tweet__buttons'>
+          <Button
+            className={`${this.state.likes > 0 ? "hide" : ""}`}
+            variant="primary"
+            onClick={() => this.manageLikesHandler(this.props.message)}
+            style={likeButtonStyle}
+          >
+            Like <FontAwesomeIcon icon={faThumbsUp} />
+          </Button>
+          <Button
+            className={`${this.state.likes < 1 ? "hide" : ""}`}
+            variant="primary"
+            onClick={() => this.manageLikesHandler(this.props.message)}
+            style={likeButtonStyle}
+          >
+            Unlike <FontAwesomeIcon icon={faThumbsDown} />
+          </Button>
           <Button
             variant="danger"
-            onClick={() => this.props.deleteMessageHandler(this.props.value.id)}
+            onClick={() =>
+              this.props.deleteMessageHandler(this.props.message.id)
+            }
           >
-            Delete Message
+            Delete <FontAwesomeIcon icon={faTrash} />
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => this.manageLikesHandler(this.props.value.id)}
-          >
-            {this.state.likes.length > 0 ? "Unlike" : "Like"}
-          </Button>
+          </div>
+          
         </Card.Body>
       </Card>
     );
   }
 }
 
-export default Message;
+export default withAsyncAction("profile", "all")(Message);
