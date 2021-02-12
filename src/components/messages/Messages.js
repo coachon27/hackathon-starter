@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Message from "./Message";
 import { withAsyncAction } from "../../redux/HOCs";
 
@@ -96,9 +96,11 @@ class Messages extends React.Component {
     return (
       <div className="messages__container">
         <div className="new__message">
+          <h2>Create Kweet</h2>
           <textarea
             className="message__input"
             name="message"
+            placeholder="What's on your mind?"
             onChange={this.handleChange}
             value={this.state.message}
           />
@@ -112,7 +114,7 @@ class Messages extends React.Component {
           {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
         </div>
         <div className="message__list">
-          <h2>Tweet List</h2>
+          <h2>Kweet List</h2>
           {display}
         </div>
       </div>

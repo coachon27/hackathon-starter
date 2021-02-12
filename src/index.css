@@ -13,49 +13,10 @@ code {
     monospace;
 }
 
-textarea {
-  display: block;
-}
-
 .Profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-button {
-  transition: all ease 0.3s;
-}
-
-.send__button {
-  border: 1px solid #0069D9;
-  color: #0069D9;
-  background-color: white;
-  margin-top: 1rem;
-  padding: .5rem 1rem;
-  border-radius: 5px;
-}
-
-.send__button:hover {
-  transform: scale(1.1);
-  color: white;
-  background-color: #0069D9;
-}
-
-@media only screen and (max-width: 800px) {
-  .messages__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .message__list {
-    width: 100%;
-  }
-
-  .tweet__div {
-    width: 400px;
-  }
 }
 
 .messages__container {
@@ -70,13 +31,43 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem 0;
+  /* margin: 5rem 0; */
   width: 45%;
 }
 
 .message__input {
+  display: block;
+  margin: 5rem 0 3rem;
+  transition: all ease 0.3s;
+  border-radius: 5px;
   width: 300px;
   height: 150px;
+  padding: 1rem;
+}
+
+.message__input:focus {
+  transform: scale(1.4);
+  box-shadow: 2px 2px 8px #888888;
+  outline: none;
+}
+
+button {
+  transition: all ease 0.3s;
+}
+
+.send__button {
+  border: 1px solid #0069d9;
+  color: #0069d9;
+  background-color: white;
+  margin-bottom: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.send__button:hover {
+  transform: scale(1.1);
+  color: white;
+  background-color: #0069d9;
 }
 
 .message__list {
@@ -115,11 +106,21 @@ button {
 
 .tweet__message {
   margin-bottom: 3rem;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.likes__buttons-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .tweet__likes {
-  margin: 0 0 1rem 0;
+  position: relative;
+  top: 5px;
+  left: 5px;
 }
 
 .tweet__buttons {
@@ -129,7 +130,7 @@ button {
 
 .tweet__button {
   margin-right: 1rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .like__button {
@@ -158,10 +159,32 @@ button {
   background-color: #750329;
 }
 
+.date__div {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
 .tweet__create-date {
   margin-top: 1.5rem;
+  position: relative;
 }
 
 .hide {
   display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .messages__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .message__list {
+    width: 100%;
+  }
+
+  .tweet__div {
+    width: 400px;
+  }
 }
