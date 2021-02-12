@@ -48,43 +48,91 @@ class Message extends React.Component {
   };
 
   render() {
-    const likeButtonStyle = { marginRight: "1rem" };
+    // const likeButtonStyle = { marginRight: "1rem" };
     return (
-      <Card key={this.props.message.id} className="tweet">
-        <Card.Header>{this.props.message.username}</Card.Header>
-        <Card.Body>
-          <Card.Title>{this.props.message.text}</Card.Title>
-          <Card.Text>{this.props.message.createdAt.substr(0, 10)}</Card.Text>
-          <Card.Text>Likes: {this.state.likes} </Card.Text>
-          <div className='tweet__buttons'>
-          <Button
-            className={`${this.state.likes > 0 ? "hide" : ""}`}
-            variant="primary"
-            onClick={() => this.manageLikesHandler(this.props.message)}
-            style={likeButtonStyle}
-          >
-            Like <FontAwesomeIcon icon={faThumbsUp} />
-          </Button>
-          <Button
-            className={`${this.state.likes < 1 ? "hide" : ""}`}
-            variant="primary"
-            onClick={() => this.manageLikesHandler(this.props.message)}
-            style={likeButtonStyle}
-          >
-            Unlike <FontAwesomeIcon icon={faThumbsDown} />
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() =>
-              this.props.deleteMessageHandler(this.props.message.id)
-            }
-          >
-            Delete <FontAwesomeIcon icon={faTrash} />
-          </Button>
+      <div className="tweet__div" key={this.props.message.id}>
+        <h4 className="tweet__header">{this.props.message.username}</h4>
+        <div className="tweet__body">
+          <p className="tweet__message">{this.props.message.text}</p>
+          <p className="tweet__likes">Likes: {this.state.likes}</p>
+          <div className="tweet__buttons">
+            <button
+              className={`${
+                this.state.likes > 0 ? "hide" : ""
+              } like__button tweet__button`}
+              onClick={() => this.manageLikesHandler(this.props.message)}
+              type="button"
+            >
+              Like <FontAwesomeIcon icon={faThumbsUp} />
+            </button>
+            <button
+              className={`${
+                this.state.likes < 1 ? "hide" : ""
+              } like__button tweet__button`}
+              onClick={() => this.manageLikesHandler(this.props.message)}
+              type="button"
+            >
+              Unlike <FontAwesomeIcon icon={faThumbsDown} />
+            </button>
+            <button
+              onClick={() =>
+                this.props.deleteMessageHandler(this.props.message.id)
+              }
+              className="delete__button tweet__button"
+              type="button"
+            >
+              Delete <FontAwesomeIcon icon={faTrash} />
+            </button>
           </div>
-          
-        </Card.Body>
-      </Card>
+          <p className="tweet__create-date">
+            {this.props.message.createdAt.substr(0, 10)}
+          </p>
+        </div>
+      </div>
+      // <Card
+      //   key={this.props.message.id}
+      //   className="tweet"
+      //   style={{ width: "18rem" }}
+      // >
+      //   <Card.Header className="tweet__header">
+      //     {this.props.message.username}
+      //   </Card.Header>
+      //   <Card.Body className="d-flex flex-column flex-wrap">
+      //     <Card.Text className="text-danger">
+      //       {this.props.message.text}
+      //     </Card.Text>
+
+      //     <Card.Text>Likes: {this.state.likes} </Card.Text>
+      // <div className="tweet__buttons">
+      //   <Button
+      //     className={`${this.state.likes > 0 ? "hide" : ""} mb-2`}
+      //     variant="outline-primary"
+      //     onClick={() => this.manageLikesHandler(this.props.message)}
+      //     style={likeButtonStyle}
+      //   >
+      //     Like <FontAwesomeIcon icon={faThumbsUp} />
+      //   </Button>
+      //   <Button
+      //     className={`${this.state.likes < 1 ? "hide" : ""} mb-2`}
+      //     variant="outline-primary"
+      //     onClick={() => this.manageLikesHandler(this.props.message)}
+      //     style={likeButtonStyle}
+      //   >
+      //     Unlike <FontAwesomeIcon icon={faThumbsDown} />
+      //   </Button>
+      //   <Button
+      //     variant="outline-danger"
+      //     className='mb-2'
+      //     onClick={() =>
+      //       this.props.deleteMessageHandler(this.props.message.id)
+      //     }
+      //   >
+      //     Delete <FontAwesomeIcon icon={faTrash} />
+      //   </Button>
+      //   <Card.Text>{this.props.message.createdAt.substr(0, 10)}</Card.Text>
+      // </div>
+      //   </Card.Body>
+      // </Card>
     );
   }
 }

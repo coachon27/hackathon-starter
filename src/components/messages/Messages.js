@@ -70,17 +70,15 @@ class Messages extends React.Component {
       this.props.removeLike(likeID);
       message.likes = [];
     } else
-      this.props
-        .addLike(message.id)
-        .then((res) => {
-          console.log("added likeID " + res.payload.like.id);
-          message.likes = [res.payload.like];
-        });
+      this.props.addLike(message.id).then((res) => {
+        console.log("added likeID " + res.payload.like.id);
+        message.likes = [res.payload.like];
+      });
   };
 
   render() {
     let display = <div>No Messages Found</div>;
-    if (this.state.messages) {
+    if (this.state.messages.length > 0) {
       display = this.state.messages.map((message) => {
         return (
           <Message
@@ -89,8 +87,6 @@ class Messages extends React.Component {
             deleteMessageHandler={this.deleteMessageHandler}
             messages={this.state.messages}
             likes={message.likes.length}
-            // addLike={() => this.props.addLike(message.id)}
-            // removeLike={() => this.props.removeLike(message)}
             setLikes={() => this.setLikes(message)}
           />
         );
@@ -98,23 +94,26 @@ class Messages extends React.Component {
     }
 
     return (
-      <div className="Messages">
-        <div className="ListMessage">{display}</div>
-        <div className="NewMessage">
-          <input
+      <div className="messages__container">
+        <div className="new__message">
+          <textarea
             className="message__input"
             name="message"
             onChange={this.handleChange}
             value={this.state.message}
           />
-          <Button
+          <button
             className="send__button"
-            variant="primary"
+            
             onClick={this.newMessageHandler}
           >
             Send Message
-          </Button>{" "}
+          </button>{" "}
           {/* <button onClick={this.newMessageHandler}> Send Message </button> */}
+        </div>
+        <div className="message__list">
+          <h2>Tweet List</h2>
+          {display}
         </div>
       </div>
     );

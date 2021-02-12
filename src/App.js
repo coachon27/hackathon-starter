@@ -17,6 +17,7 @@ class App extends React.Component {
         <Route
           exact
           path="/profile/:username"
+          render={(props) => <Profile {...props} username={this.props.match.params.username} />}
           component={Profile}
         />
         <Route
