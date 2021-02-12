@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
     const { loading, error } = this.props;
     return (
       <div className="LoginForm">
-        <h2>Your favorite microblogging platform</h2>
+        <h2>My least favorite microblogging platform</h2>
         <form id="login-form" onSubmit={this.handleLogin}>
           <label htmlFor="username">Username</label>
           <div>
@@ -48,6 +48,9 @@ class LoginForm extends React.Component {
             Login
           </button>
         </form>
+        <div className='register__div'>
+          <h5>Not a user? <a href='/'>Click Here!</a></h5>
+        </div>
         {loading && <Spinner name="circle" color="blue" />}
         {error && <p style={{ color: "red" }}>{error.message}</p>}
        
