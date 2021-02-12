@@ -18,7 +18,7 @@ export const getMessage = (username, limit) => dispatch => {
     .then(result => {
       return dispatch({
         type: GETMESSAGE.SUCCESS,
-        payload: result
+        payload: result 
       });
     })
     .catch(err => {

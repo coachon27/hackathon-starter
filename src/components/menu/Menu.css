@@ -1,20 +1,25 @@
 .Menu {
-  background-color: lightskyblue;
+  background-color: #104274;
   display: flex;
+  color: white;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1em;
+  padding: 2rem 1em;
   border-radius: 1em;
+  width: 100%;
 }
 
 #menu-links {
   display: flex;
   padding-left: 1em;
+
 }
 
 #menu-links a {
+  margin-left: 2rem;
   padding-right: 0.5em;
-  color: darkblue;
-  text-decoration: underline;
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
   cursor: pointer;
 }
